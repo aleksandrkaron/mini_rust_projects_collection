@@ -18,7 +18,7 @@ fn main() {
         let option: u32 = match option.trim().parse() {
             Ok(num) => num,
             Err(_) => {
-                println!("\nInvalid option");
+                println!("INVALID OPTION!");
                 continue;
             },
         };
@@ -36,9 +36,8 @@ fn main() {
                 println!("Project 3");
                 break;
             },
-            _ => println!("Invalid option"),
+            _ => println!("\nINVALID OPTION!"),
         }
-        println!("Selected option: {option}");
 
     }
 }
@@ -47,7 +46,7 @@ fn temp_converter() {
     print!("{}[2J", 27 as char);
     println!("\nWelcome to the Temperature Converter!\n");
     loop {
-        println!(">>> Which temperature unit would you like to convert? <<<\n\n\
+        println!("\n>>> Which temperature unit would you like to convert? <<<\n\n\
         1) Celsius\n\
         2) Fahrenheit\n\n\
         Please enter your input (1-2).");
@@ -59,7 +58,7 @@ fn temp_converter() {
         let option: u32 = match option.trim().parse() {
             Ok(num) => num,
             Err(_) => {
-                println!("\nInvalid option");
+                println!("INVALID OPTION!");
                 continue;
             },
         };
@@ -73,37 +72,58 @@ fn temp_converter() {
                 fahrenheit_to_celsius();
                 break;
             },
-            _ => println!("Invalid option"),
+            _ => println!("\nINVALID OPTION!"),
         }
-        println!("Selected option: {option}");
     }
 }
 fn celsius_to_fahrenheit() {
     println!("\nYou chose to convert from Celsius to Fahrenheit.");
-    println!("\n >>> Enter a temperature in Celsius. <<<");
 
-    let mut temp_in_c = String::new();
+    loop {
+        println!("\n >>> Enter a temperature in Celsius. <<<");
 
-    io::stdin().read_line(&mut temp_in_c).expect("Failed to read temperature");
+        let mut temp_in_c = String::new();
 
-    let temp_in_c: f64 = temp_in_c.trim().parse().expect("Not a valid number");
+        io::stdin().read_line(&mut temp_in_c).expect("Failed to read temperature");
 
-    let temp_in_f = (temp_in_c * (9.0/5.0)) + 32.0;
+        let temp_in_c: f64 = match temp_in_c.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("INVALID OPTION!");
+                continue;
+            },
+        };
 
-    println!("\n{}°C in Fahrenheit is: {:.2}°F.", temp_in_c, temp_in_f);
+        let temp_in_f = (temp_in_c * (9.0 / 5.0)) + 32.0;
+
+        println!("\n{}°C in Fahrenheit is: {:.2}°F.", temp_in_c, temp_in_f);
+
+        break;
+    }
 }
 
 fn fahrenheit_to_celsius() {
     println!("\nYou chose to convert from Fahrenheit to Celsius.");
-    println!("\n >>> Enter a temperature in Fahrenheit. <<<");
 
-    let mut temp_in_f = String::new();
+    loop {
+        println!("\n >>> Enter a temperature in Fahrenheit. <<<");
 
-    io::stdin().read_line(&mut temp_in_f).expect("Failed to read temperature");
+        let mut temp_in_f = String::new();
 
-    let temp_in_f: f64 = temp_in_f.trim().parse().expect("Not a valid number");
+        io::stdin().read_line(&mut temp_in_f).expect("Failed to read temperature");
 
-    let temp_in_c = (temp_in_f - 32.0) * (5.0/9.0);
+        let temp_in_f: f64 = match temp_in_f.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("\nINVALID OPTION!");
+                continue;
+            },
+        };
 
-    println!("\n{}°F in Celsius is: {:.2}°C.", temp_in_f, temp_in_c);
+        let temp_in_c = (temp_in_f - 32.0) * (5.0 / 9.0);
+
+        println!("\n{}°F in Celsius is: {:.2}°C.", temp_in_f, temp_in_c);
+
+        break;
+    }
 }
