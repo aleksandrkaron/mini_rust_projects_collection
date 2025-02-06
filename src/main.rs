@@ -70,7 +70,7 @@ fn temp_converter() {
                 break;
             },
             2 => {
-                println!("Fahrenheit to Celsius Converter");
+                fahrenheit_to_celsius();
                 break;
             },
             _ => println!("Invalid option"),
@@ -88,7 +88,22 @@ fn celsius_to_fahrenheit() {
 
     let temp_in_c: f64 = temp_in_c.trim().parse().expect("Not a valid number");
 
-    let temp_in_f = temp_in_c * 1.8 + 32.0;
+    let temp_in_f = (temp_in_c * (9.0/5.0)) + 32.0;
 
-    println!("\n{temp_in_c}°C in Fahrenheit is: {temp_in_f}°F.");
+    println!("\n{}°C in Fahrenheit is: {:.2}°F.", temp_in_c, temp_in_f);
+}
+
+fn fahrenheit_to_celsius() {
+    println!("\nYou chose to convert from Fahrenheit to Celsius.");
+    println!("\n >>> Enter a temperature in Fahrenheit. <<<");
+
+    let mut temp_in_f = String::new();
+
+    io::stdin().read_line(&mut temp_in_f).expect("Failed to read temperature");
+
+    let temp_in_f: f64 = temp_in_f.trim().parse().expect("Not a valid number");
+
+    let temp_in_c = (temp_in_f - 32.0) * (5.0/9.0);
+
+    println!("\n{}°F in Celsius is: {:.2}°C.", temp_in_f, temp_in_c);
 }
