@@ -1,4 +1,5 @@
 use std::io;
+use ordinal::Ordinal;
 
 fn main() {
     println!("\nWelcome to my compilation of mini Rust projects!\n\
@@ -7,7 +8,7 @@ fn main() {
     loop {
         println!("\n>>> Select a program to run. <<<\n\n\
         1) Temperature Converter\n\
-        2) Project 2\n\
+        2) Fibonacci Sequence Generator\n\
         3) Project 3\n\n\
         Please enter your input (1-3).");
 
@@ -18,6 +19,7 @@ fn main() {
         let option: u32 = match option.trim().parse() {
             Ok(num) => num,
             Err(_) => {
+                print!("{}[2J", 27 as char);
                 println!("INVALID OPTION!");
                 continue;
             },
@@ -29,14 +31,17 @@ fn main() {
                 break;
             },
             2 => {
-                println!("Project 2");
+                fibonacci_sequence();
                 break;
             },
             3 => {
                 println!("Project 3");
                 break;
             },
-            _ => println!("\nINVALID OPTION!"),
+            _ => {
+                print!("{}[2J", 27 as char);
+                println!("\nINVALID OPTION!");
+            },
         }
 
     }
@@ -46,7 +51,7 @@ fn temp_converter() {
     print!("{}[2J", 27 as char);
     println!("\nWelcome to the Temperature Converter!\n");
     loop {
-        println!("\n>>> Which temperature unit would you like to convert? <<<\n\n\
+        println!(">>> Which temperature unit would you like to convert? <<<\n\n\
         1) Celsius\n\
         2) Fahrenheit\n\n\
         Please enter your input (1-2).");
@@ -58,7 +63,8 @@ fn temp_converter() {
         let option: u32 = match option.trim().parse() {
             Ok(num) => num,
             Err(_) => {
-                println!("INVALID OPTION!");
+                print!("{}[2J", 27 as char);
+                println!("INVALID OPTION!\n");
                 continue;
             },
         };
@@ -72,15 +78,19 @@ fn temp_converter() {
                 fahrenheit_to_celsius();
                 break;
             },
-            _ => println!("\nINVALID OPTION!"),
+            _ => {
+                print!("{}[2J", 27 as char);
+                println!("\nINVALID OPTION!");
+            },
         }
     }
 }
 fn celsius_to_fahrenheit() {
+    print!("{}[2J", 27 as char);
     println!("\nYou chose to convert from Celsius to Fahrenheit.");
 
     loop {
-        println!("\n >>> Enter a temperature in Celsius. <<<");
+        println!("\n>>> Enter a temperature in Celsius. <<<");
 
         let mut temp_in_c = String::new();
 
@@ -89,6 +99,7 @@ fn celsius_to_fahrenheit() {
         let temp_in_c: f64 = match temp_in_c.trim().parse() {
             Ok(num) => num,
             Err(_) => {
+                print!("{}[2J", 27 as char);
                 println!("INVALID OPTION!");
                 continue;
             },
@@ -103,10 +114,11 @@ fn celsius_to_fahrenheit() {
 }
 
 fn fahrenheit_to_celsius() {
+    print!("{}[2J", 27 as char);
     println!("\nYou chose to convert from Fahrenheit to Celsius.");
 
     loop {
-        println!("\n >>> Enter a temperature in Fahrenheit. <<<");
+        println!("\n>>> Enter a temperature in Fahrenheit. <<<");
 
         let mut temp_in_f = String::new();
 
@@ -115,7 +127,8 @@ fn fahrenheit_to_celsius() {
         let temp_in_f: f64 = match temp_in_f.trim().parse() {
             Ok(num) => num,
             Err(_) => {
-                println!("\nINVALID OPTION!");
+                print!("{}[2J", 27 as char);
+                println!("INVALID OPTION!");
                 continue;
             },
         };
@@ -124,6 +137,43 @@ fn fahrenheit_to_celsius() {
 
         println!("\n{}°F in Celsius is: {:.2}°C.", temp_in_f, temp_in_c);
 
+        break;
+    }
+}
+
+fn fibonacci_sequence() {
+    print!("{}[2J", 27 as char);
+    println!("\nWelcome to the Fibonacci Sequence Generator!\n\
+    This code uses the Binet's Formula to calculate the n-th Fibonacci number!\n");
+
+    loop {
+        println!(">>> Please enter the n-th Fibonacci number you’d like to calculate. <<< \n");
+
+        let mut number = String::new();
+
+        io::stdin().read_line(&mut number).expect("Failed to read line");
+
+        let number: u32 = match number.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                print!("{}[2J", 27 as char);
+                println!("\nINVALID OPTION!\n");
+                continue;
+            },
+        };
+
+        let number_as_float: f64 = number as f64;
+
+        // 1 divided by the square root of 5
+        let sequence_1: f64 = 1.0 / 5_f64.sqrt();
+        // 1 plus the square root of 5, divided by 2, to the power of the n-th number
+        let sequence_2: f64 = ((1.0 + 5_f64.sqrt()) / 2.0).powf(number_as_float);
+        // 1 minus the square root of 5, divided by 2, to the power of the n-th number
+        let sequence_3: f64 = ((1.0 - 5_f64.sqrt()) / 2.0).powf(number_as_float);
+
+        let calculation: f64 = sequence_1 * (sequence_2 - sequence_3);
+
+        println!("\nThe {} number of the Fibonacci Sequence is: {:.0}.", Ordinal(number), calculation);
         break;
     }
 }
