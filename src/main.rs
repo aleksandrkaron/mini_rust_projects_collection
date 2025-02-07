@@ -2,6 +2,7 @@ use std::io;
 use ordinal::Ordinal;
 
 fn main() {
+    print!("{}[2J", 27 as char);
     println!("\nWelcome to my compilation of mini Rust projects!\n\
     This program has been written by @aleksandrkaron, from the knowledge I gained from the Rust book.");
 
@@ -9,7 +10,7 @@ fn main() {
         println!("\n>>> Select a program to run. <<<\n\n\
         1) Temperature Converter\n\
         2) Fibonacci Sequence Generator\n\
-        3) Project 3\n\n\
+        3) Christmas Carol Generator\n\n\
         Please enter your input (1-3).");
 
         let mut option = String::new();
@@ -35,7 +36,7 @@ fn main() {
                 break;
             },
             3 => {
-                println!("Project 3");
+                christmas_carol();
                 break;
             },
             _ => {
@@ -176,4 +177,159 @@ fn fibonacci_sequence() {
         println!("\nThe {} number of the Fibonacci Sequence is: {:.0}.", Ordinal(number), calculation);
         break;
     }
+}
+
+fn christmas_carol() {
+    let ordered_items =
+        [("first", "And a partridge in a pear tree."),
+            ("second", "Two turtle doves,"),
+            ("third", "Three french hens,"),
+            ("fourth", "Four calling birds,"),
+            ("fifth", "Five golden rings,"),
+            ("sixth", "Six geese a-laying,"),
+            ("seventh", "Seven swans a-swimming,"),
+            ("eighth", "Eight maids a-milking,"),
+            ("ninth", "Nine ladies dancing,"),
+            ("tenth", "Ten lords a-leaping,"),
+            ("eleventh", "Eleven pipers piping,"),
+            ("twelfth", "Twelve drummers drumming,"),];
+
+    print!("{}[2J", 27 as char);
+    println!("\nWelcome to the Christmas Carol Generator!\n");
+    println!("This version of The Twelve Days of Christmas has been generated using X, \n\
+    to automatically generate the repeated parts.\n\n");
+    println!("The 12 Days of Christmas\n\n\
+    ----\n");
+
+    println!("On the first day of Christmas,\n\
+    my true love sent to me,\n\
+    A partridge in a pear tree\n");
+
+    let mut increasing_index = 1;
+
+    // Prints each paragraph in increasing numbers
+    while increasing_index < ordered_items.len() && increasing_index >= 0 {
+        println!("On the {} day of Christmas,", ordered_items[increasing_index].0);
+        println!("my true love sent to me");
+
+        let mut decreasing_index = increasing_index;
+        // Prints each line from the current paragraph in decreasing numbers
+        while decreasing_index > 0 && decreasing_index < ordered_items.len() {
+            println!("{}", ordered_items[decreasing_index].1);
+            decreasing_index -= 1;
+        }
+        // Prints the remaining line at index 0
+        println!("{}\n", ordered_items[decreasing_index].1);
+
+        increasing_index += 1;
+
+    }
+
+    // On the first day of Christmas,
+    // my true love gave to me
+    // A partridge in a pear tree.
+
+    //     On the second day of Christmas,
+    // my true love gave to me
+    // Two turtle doves,
+    // And a partridge in a pear tree.
+
+    //     On the third day of Christmas,
+    // my true love gave to me
+    // Three French hens,
+    // Two turtle doves,
+    // And a partridge in a pear tree.
+
+    //     On the fourth day of Christmas,
+    // my true love gave to me
+    // Four calling birds,
+    // Three French hens,
+    // Two turtle doves,
+    // And a partridge in a pear tree.
+    //     On the fifth day of Christmas,
+    // my true love gave to me
+    // Five golden rings,
+    // Four calling birds,
+    // Three French hens,
+    // Two turtle doves,
+    // And a partridge in a pear tree.
+    //     On the sixth day of Christmas,
+    // my true love gave to me
+    // Six geese a-laying,
+    // Five golden rings,
+    // Four calling birds,
+    // Three French hens,
+    // Two turtle doves,
+    // And a partridge in a pear tree.
+    //     On the seventh day of Christmas,
+    // my true love gave to me
+    // Seven swans a-swimming,
+    // Six geese a-laying,
+    // Five golden rings,
+    // Four calling birds,
+    // Three French hens,
+    // Two turtle doves,
+    // And a partridge in a pear tree.
+    //     On the eighth day of Christmas,
+    // my true love gave to me
+    // Eight maids a-milking,
+    // Seven swans a-swimming,
+    // Six geese a-laying,
+    // Five golden rings,
+    // Four calling birds,
+    // Three French hens,
+    // Two turtle doves,
+    // And a partridge in a pear tree.
+    //     On the ninth day of Christmas,
+    // my true love gave to me
+    // Nine ladies dancing,
+    // Eight maids a-milking,
+    // Seven swans a-swimming,
+    // Six geese a-laying,
+    // Five golden rings,
+    // Four calling birds,
+    // Three French hens,
+    // Two turtle doves,
+    // And a partridge in a pear tree.
+    //     On the tenth day of Christmas,
+    // my true love gave to me
+    // Ten lords a-leaping,
+    // Nine ladies dancing,
+    // Eight maids a-milking,
+    // Seven swans a-swimming,
+    // Six geese a-laying,
+    // Five golden rings,
+    // Four calling birds,
+    // Three French hens,
+    // Two turtle doves,
+    // And a partridge in a pear tree.
+    //     On the eleventh day of Christmas,
+    // my true love gave to me
+    // Eleven pipers piping,
+    // Ten lords a-leaping,
+    // Nine ladies dancing,
+    // Eight maids a-milking,
+    // Seven swans a-swimming,
+    // Six geese a-laying,
+    // Five golden rings,
+    // Four calling birds,
+    // Three French hens,
+    // Two turtle doves,
+    // And a partridge in a pear tree.
+    //     On the twelfth day of Christmas,
+    // my true love gave to me
+    // Twelve drummers drumming,
+    // Eleven pipers piping,
+    // Ten lords a-leaping,
+    // Nine ladies dancing,
+    // Eight maids a-milking,
+    // Seven swans a-swimming,
+    // Six geese a-laying,
+    // Five golden rings,
+    // Four calling birds,
+    // Three French hens,
+    // Two turtle doves,
+    // And a partridge in a pear tree!
+
+
 }
