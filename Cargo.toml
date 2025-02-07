@@ -1,5 +1,5 @@
 [package]
-name = "miniprojects_chapter_3"
+name = "mini_rust_projects"
 version = "0.1.0"
 edition = "2021"
 
