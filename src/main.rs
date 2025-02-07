@@ -214,7 +214,7 @@ fn christmas_carol() {
     let mut increasing_index = 1;
 
     // Prints each paragraph in increasing numbers
-    while increasing_index < ordered_items.len() && increasing_index >= 0 {
+    while increasing_index < ordered_items.len() {
         println!("On the {} day of Christmas,", ordered_items[increasing_index].0);
         println!("my true love sent to me");
 
