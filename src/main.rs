@@ -4,7 +4,7 @@ use ordinal::Ordinal;
 fn main() {
     print!("{}[2J", 27 as char);
     println!("\nWelcome to my compilation of mini Rust projects!\n\
-    This program has been written by @aleksandrkaron, from the knowledge I gained from the Rust book.");
+    This program has been written by @aleksandrkaron, based on the knowledge I gained from the Rust book.");
 
     loop {
         println!("\n>>> Select a program to run. <<<\n\n\
