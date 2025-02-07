@@ -112,6 +112,8 @@ fn celsius_to_fahrenheit() {
 
         break;
     }
+
+    press_key_to_exit();
 }
 
 fn fahrenheit_to_celsius() {
@@ -140,6 +142,8 @@ fn fahrenheit_to_celsius() {
 
         break;
     }
+
+    press_key_to_exit();
 }
 
 fn fibonacci_sequence() {
@@ -177,6 +181,7 @@ fn fibonacci_sequence() {
         println!("\nThe {} number of the Fibonacci Sequence is: {:.0}.", Ordinal(number), calculation);
         break;
     }
+    press_key_to_exit();
 }
 
 fn christmas_carol() {
@@ -228,6 +233,13 @@ fn christmas_carol() {
         println!("{}\n", ordered_items[decreasing_index].1);
 
         increasing_index += 1;
-
     }
+
+    press_key_to_exit();
+}
+
+fn press_key_to_exit() {
+    println!("\nPress [Enter] to exit.");
+    let mut exit = String::new();
+    io::stdin().read_line(&mut exit).expect("Failed to read line");
 }
